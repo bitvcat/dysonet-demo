@@ -1,0 +1,3 @@
+[submodule "dysonet"]
+	path = dysonet
+	url = https://github.com/domixcat/dysonet.git
