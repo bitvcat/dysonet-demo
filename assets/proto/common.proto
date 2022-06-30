@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message MsgPackage {
+    int32 opcode = 1;       // 协议号
+    bytes args = 2;         // 协议内容
+}

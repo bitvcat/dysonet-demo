@@ -3,7 +3,9 @@
 .
 ├── dysonet                     -- 这里是引擎（第三方模块、服务等）
 ├── etc                         -- 这里放skynet启动配置、cluste节点配置等
-├── config                      -- 这里放游戏配置（excel 以及导表生成的 lua 配置文件）
+├── assets                      -- 这里放游戏资产
+│   ├── config                  -- excel 以及导表生成的 lua 配置文件
+│   └── proto                   -- 协议文件
 ├── common                      -- 这里放游戏公共模块（跟游戏业务相关的模块）
 ├── docs                        -- 这里放服务器文档
 ├── tools                       -- 这里放工具链、脚本等

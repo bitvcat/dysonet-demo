@@ -1,2 +1,2 @@
 -- gate
-gate_slave_num = 7
+gate_slave_num = 0
