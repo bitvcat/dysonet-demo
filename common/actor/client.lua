@@ -16,6 +16,11 @@ function Client:onConnect(fd, addr, gateNode, gateAddr)
 end
 
 function Client:onMessage(fd, opcode, args)
+    if opcode == 0 then
+        -- 纯文本消息
+    else
+        -- protobuf 消息
+    end
 end
 
 --- 消息发送处理

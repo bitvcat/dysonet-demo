@@ -2,10 +2,10 @@ if _VERSION ~= "Lua 5.3" then
 	--error "Use lua 5.3"
 end
 
-package.cpath = "../skynet/luaclib/?.so"
+package.cpath = "../dysonet/skynet/luaclib/?.so"
 
 local socket = require "client.socket"
-local fd = assert(socket.connect("127.0.0.1", 8888))
+local fd = assert(socket.connect("127.0.0.1", 12345))
 
 local function send_package(fd, pack)
 	local package = string.pack(">s2", pack)
@@ -18,11 +18,11 @@ local function unpack_package(text)
 		return nil, text
 	end
 	local s = text:byte(1) * 256 + text:byte(2)
-	if size < s+2 then
+	if size < s + 2 then
 		return nil, text
 	end
 
-	return text:sub(3,2+s), text:sub(3+s)
+	return text:sub(3, 2 + s), text:sub(3 + s)
 end
 
 local function recv_package(last)
@@ -75,9 +75,8 @@ while true do
 	dispatch_package()
 	local cmd = socket.readstdin()
 	if cmd then
-		send_package(fd,cmd)
+		send_package(fd, cmd)
 	else
 		socket.usleep(100)
 	end
 end
-
