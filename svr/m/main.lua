@@ -1,6 +1,11 @@
 require("svr.m.dysonet")
 
 local skynet = require "skynet"
+skynet.init(function()
+	skynet.error("Server init")
+	App:Init()
+end)
+
 skynet.start(function()
 	skynet.error("Server start")
 

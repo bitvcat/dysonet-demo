@@ -11,7 +11,7 @@ local skynet = require("skynet")
 
 local Actor = Class("Actor")
 function Actor:__ctor()
-    self.client = nil --处理客户端消息
+    self.client = Client:New() --处理客户端消息
     self.cluster = nil --处理集群消息
     self.internal = nil --处理节点内部消息
     self.console = nil --处理debug_console消息
