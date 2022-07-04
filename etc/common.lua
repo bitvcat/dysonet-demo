@@ -1,6 +1,6 @@
 -- gate
 thread = 8
-logpath = "./log"
+logpath = "log"
 --logger = logpath .. "/skynet.log"
 harbor = 0
 bootstrap = "snlua bootstrap"
