@@ -21,5 +21,8 @@ skynet.start(function()
 		watchdog = skynet.self()
 	}
 	skynet.call(tcp_gate, "lua", "open", gateConf)
+
+	xlogger.init()
+	xlogger.logf("client", "a=%d, b=%d", 100, 2000)
 	--skynet.exit()
 end)
