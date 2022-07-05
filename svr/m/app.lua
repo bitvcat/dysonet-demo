@@ -8,6 +8,10 @@ function App:OnInit()
 end
 
 function App:OnStart()
+    self.actor:openClient()
+    self.actor:openConsole()
+
     xlogger.logf("client", "a=%d, b=%d", 100, 2000)
     xlogger.print("hello", "world")
+    xlogger.print(self, "你号")
 end

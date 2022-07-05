@@ -11,10 +11,10 @@ local skynet = require("skynet")
 
 local Actor = Class("Actor")
 function Actor:__ctor()
-    self.client = Client:New() --处理客户端消息
-    self.cluster = nil --处理集群消息
-    self.internal = nil --处理节点内部消息
-    self.console = nil --处理debug_console消息
+    self.client = false --处理客户端消息
+    self.cluster = false --处理集群消息
+    self.internal = false --处理节点内部消息
+    self.console = false --处理debug_console消息
 end
 
 function Actor:start()
@@ -24,13 +24,30 @@ function Actor:start()
 end
 
 function Actor:openCluster()
+    self.cluster = Cluster:New()
+    self.cluster:open()
+end
+
+function Actor:openClient()
+    self.client = Client:New()
+    self.client:open()
+end
+
+function Actor:openInternal()
+    self.internal = Internal:New()
+    self.internal:open()
+end
+
+function Actor:openConsole()
+    self.console = Console:New()
+    self.console:open()
 end
 
 --- 消息派发处理
 function Actor:dispatch(session, source, typename, ...)
-    local actor = self[typename]
-    if actor then
-        actor:dispatch(session, source, ...)
+    local handler = self[typename]
+    if handler then
+        handler:dispatch(session, source, ...)
     else
         skynet.error(string.format("op=dispatch,typename=%s not exist", typename))
     end
@@ -38,8 +55,8 @@ end
 
 --- 消息发送处理
 function Actor:send(typename, ...)
-    local actor = self[typename]
-    if actor then
-        actor:send(...)
+    local handler = self[typename]
+    if handler then
+        handler:send(...)
     end
 end

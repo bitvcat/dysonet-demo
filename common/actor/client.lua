@@ -4,8 +4,22 @@ local skynet = require "skynet"
 
 local Client = Class("Client")
 function Client:__ctor()
+    self.tcpGate = false
     self.links = {}
     self.closeCallback = nil
+end
+
+function Client:open()
+    -- gate service
+    self.tcpGate = assert(skynet.newservice("gate_tcp"))
+
+    -- open gate
+    local gateConf = {
+        port = tonumber(skynet.getenv("tcp_port")),
+        slaveNum = tonumber(skynet.getenv("gate_slave_num")),
+        watchdog = skynet.self()
+    }
+    skynet.call(self.tcpGate, "lua", "open", gateConf)
 end
 
 --- 消息派发处理
@@ -58,6 +72,10 @@ function Client:onMessage(fd, opcode, args)
     else
         -- protobuf 消息
     end
+end
+
+function Client:onHttpMessage(fd)
+
 end
 
 function Client:onClose(fd, reason)
