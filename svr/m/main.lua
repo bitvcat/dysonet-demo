@@ -1,4 +1,4 @@
-require("svr.m.dysonet")
+require("svr.m.app")
 
 local skynet = require "skynet"
 skynet.init(function()
@@ -8,6 +8,7 @@ end)
 
 skynet.start(function()
 	skynet.error("Server start")
+	App:Start()
 
 	local debug_port = skynet.getenv("debug_port")
 	if debug_port then
@@ -21,8 +22,5 @@ skynet.start(function()
 		watchdog = skynet.self()
 	}
 	skynet.call(tcp_gate, "lua", "open", gateConf)
-
-	xlogger.init()
-	xlogger.logf("client", "a=%d, b=%d", 100, 2000)
 	--skynet.exit()
 end)
