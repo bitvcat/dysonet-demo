@@ -5,6 +5,8 @@ local skynet = require("skynet")
 local App = Class("App")
 function App:__Init(serviceName, ...)
     skynet.error("----- App Init -----")
+    xlogger.init()
+
     self.nodes = require("etc.nodes")
     self.actor = Actor:New()
     self.actor:start()

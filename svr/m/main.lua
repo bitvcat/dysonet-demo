@@ -9,6 +9,5 @@ end)
 skynet.start(function()
 	skynet.error("Server start")
 	App:Start()
-
 	--skynet.exit()
 end)

@@ -24,11 +24,11 @@ function Actor:start()
     end)
 end
 
-function Actor:open(typename, handlers)
+function Actor:open(typename, api)
     local clsname = string.upper(string.sub(typename, 1, 1)) .. string.sub(typename, 2)
     local obj = _G[clsname]:New()
     self[typename] = obj
-    obj:open(handlers)
+    obj:open(api)
 end
 
 --- 消息派发处理

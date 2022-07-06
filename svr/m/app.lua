@@ -4,7 +4,6 @@ require("common.app")
 
 local App = Extend("App")
 function App:OnInit()
-    xlogger.init()
 end
 
 function App:OnStart()
@@ -13,5 +12,5 @@ function App:OnStart()
 
     xlogger.logf("client", "a=%d, b=%d", 100, 2000)
     xlogger.print("hello", "world")
-    xlogger.print(self, "你号")
+    xlogger.print(self, "你好")
 end
