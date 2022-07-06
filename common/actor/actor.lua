@@ -15,6 +15,7 @@ function Actor:__ctor()
     self.cluster = false --处理集群消息
     self.internal = false --处理节点内部消息
     self.console = false --处理debug_console消息
+    self.http = false --处理http消息
 end
 
 function Actor:start()
@@ -23,24 +24,11 @@ function Actor:start()
     end)
 end
 
-function Actor:openCluster()
-    self.cluster = Cluster:New()
-    self.cluster:open()
-end
-
-function Actor:openClient()
-    self.client = Client:New()
-    self.client:open()
-end
-
-function Actor:openInternal()
-    self.internal = Internal:New()
-    self.internal:open()
-end
-
-function Actor:openConsole()
-    self.console = Console:New()
-    self.console:open()
+function Actor:open(typename, handlers)
+    local clsname = string.upper(string.sub(typename, 1, 1)) .. string.sub(typename, 2)
+    local obj = _G[clsname]:New()
+    self[typename] = obj
+    obj:open(handlers)
 end
 
 --- 消息派发处理

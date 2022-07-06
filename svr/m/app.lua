@@ -8,8 +8,8 @@ function App:OnInit()
 end
 
 function App:OnStart()
-    self.actor:openClient()
-    self.actor:openConsole()
+    self.actor:open("client", require("svr.m.api.client.init"))
+    self.actor:open("cluster", require("svr.m.api.server.init"))
 
     xlogger.logf("client", "a=%d, b=%d", 100, 2000)
     xlogger.print("hello", "world")

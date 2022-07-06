@@ -1,4 +1,6 @@
 --- client actor
+-- eg.:
+--  skynet.send(addr, "lua", "client", "onMessage", ...)
 
 local skynet = require "skynet"
 
@@ -7,9 +9,13 @@ function Client:__ctor()
     self.tcpGate = false
     self.links = {}
     self.closeCallback = nil
+    self.api = nil
 end
 
-function Client:open()
+function Client:open(api)
+    assert(type(api) == "table")
+    self.api = api
+    self.api:Init()
     -- gate service
     self.tcpGate = assert(skynet.newservice("gate_tcp"))
 
@@ -26,7 +32,7 @@ end
 function Client:dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
-    func(self, ...)
+    return func(self, ...)
 end
 
 function Client:_sendToLink(fd, cmd, ...)
@@ -66,16 +72,16 @@ function Client:onConnect(fd, addr, gateNode, gateAddr)
     self.links[fd] = link
 end
 
-function Client:onMessage(fd, opcode, args)
-    if opcode == 0 then
-        -- 纯文本消息
-    else
-        -- protobuf 消息
+function Client:onMessage(fd, opname, args)
+    local link = self:getLink(fd)
+    if link then
+        return
     end
-end
 
-function Client:onHttpMessage(fd)
-
+    local opfunc = self.net[opname]
+    if opfunc then
+        opfunc(link, args)
+    end
 end
 
 function Client:onClose(fd, reason)

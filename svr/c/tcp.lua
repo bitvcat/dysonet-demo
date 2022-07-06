@@ -59,8 +59,8 @@ function tcp.onMessage(fd, msg)
         tcp.encryptKey = encryptKey
         tcp.handshake = 1
     else
-        local opcode, args = protobuf.decode_message(msg)
-        skynet.error(opcode, args)
+        local opname, args = protobuf.decode_message(msg)
+        skynet.error(opname, args)
     end
 end
 

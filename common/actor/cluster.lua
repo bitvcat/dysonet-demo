@@ -6,9 +6,14 @@ local cluster = require "skynet.cluster"
 local Cluster = Class("Cluster")
 function Cluster:__ctor()
     self.nodes = {}
+    self.api = nil
 end
 
-function Cluster:open()
+function Cluster:open(api)
+    assert(type(api) == "table")
+    self.api = api
+    self.api:Init()
+
     local addrs = {
         db = "127.0.0.1:2528",
         db2 = "127.0.0.1:2529",
