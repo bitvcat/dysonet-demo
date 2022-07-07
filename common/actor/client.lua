@@ -1,6 +1,6 @@
 --- client actor
 -- eg.:
---  skynet.send(addr, "lua", "client", "onMessage", ...)
+--  skynet.send(addr, "lua", "client", "onMessage", "C2S_Task_Finish", ...)
 
 local skynet = require "skynet"
 
@@ -9,13 +9,13 @@ function Client:__ctor()
     self.tcpGate = false
     self.links = {}
     self.closeCallback = nil
-    self.api = nil
+    self.apiobj = nil
 end
 
-function Client:open(api)
-    assert(type(api) == "table")
-    self.api = api
-    self.api:Init()
+function Client:open(apiobj)
+    assert(type(apiobj) == "table")
+    self.apiobj = apiobj
+    self.apiobj:Init()
     -- gate service
     self.tcpGate = assert(skynet.newservice("gate_tcp"))
 
@@ -78,9 +78,9 @@ function Client:onMessage(fd, opname, args)
         return
     end
 
-    local opfunc = self.net[opname]
+    local opfunc = self.apiobj[opname]
     if opfunc then
-        opfunc(link, args)
+        opfunc(self.apiobj, link, args)
     end
 end
 

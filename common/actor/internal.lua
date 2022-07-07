@@ -7,13 +7,13 @@ local skynet = require "skynet"
 
 local Internal = Class("Internal")
 function Internal:__ctor()
-    self.api = nil
+    self.apiobj = nil
 end
 
-function Internal:open(api)
-    assert(type(api) == "table")
-    self.api = api
-    self.api:Init()
+function Internal:open(apiobj)
+    assert(type(apiobj) == "table")
+    self.apiobj = apiobj
+    self.apiobj:Init()
 end
 
 function Internal:dispatch(cmd, ...)
@@ -23,9 +23,9 @@ function Internal:dispatch(cmd, ...)
 end
 
 function Internal:api(subcmd, ...)
-    local handler = self.api[subcmd]
+    local handler = self.apiobj[subcmd]
     assert(handler, subcmd)
-    return handler(...)
+    return handler(self.apiobj, ...)
 end
 
 function Internal:exec(cmdstr)

@@ -4,11 +4,11 @@ local skynet = require "skynet"
 
 local Http = Class("Http")
 function Http:__ctor()
-    self.api = nil
+    self.apiobj = nil
 end
 
-function Http:open(api)
-    assert(type(api) == "table")
-    self.api = api
-    self.api:Init()
+function Http:open(apiobj)
+    assert(type(apiobj) == "table")
+    self.apiobj = apiobj
+    self.apiobj:Init()
 end

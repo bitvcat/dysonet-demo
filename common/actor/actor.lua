@@ -35,7 +35,11 @@ end
 function Actor:dispatch(session, source, typename, ...)
     local handler = self[typename]
     if handler then
-        handler:dispatch(session, source, ...)
+        if session ~= 0 then
+            skynet.retpack(handler:dispatch(session, source, ...))
+        else
+            handler:dispatch(session, source, ...)
+        end
     else
         skynet.error(string.format("op=dispatch,typename=%s not exist", typename))
     end
