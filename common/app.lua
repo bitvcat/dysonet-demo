@@ -1,4 +1,5 @@
 -- app
+require("dysonet.init")
 require("common.actor.init")
 local skynet = require("skynet")
 

@@ -1,7 +1,9 @@
 -- gate
 thread = 8
+logboth = "@"
 logpath = "log"
---logger = logpath .. "/skynet.log"
+logger = logboth .. logpath .. "/skynet.log"
+logservice = "slogger"
 harbor = 0
 bootstrap = "snlua bootstrap"
 

@@ -22,7 +22,7 @@ function Console:open(apiobj)
 
         -- inject
         local debug_console_inject = require "debug_inject"
-        --debug_console_inject(self.addr)
+        debug_console_inject(self.addr)
     end
 end
 
