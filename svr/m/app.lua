@@ -13,4 +13,6 @@ function App:OnStart()
     -- xlogger.logf("client", "a=%d, b=%d", 100, 2000)
     -- xlogger.print("hello", "world")
     --xlogger.print(self, "你好")
+    xlogger.print(string.trim("   testabab", "ab"))
+    xlogger.print(string.tohex("123456789abcadadadandjadjhajdhjahdjahjdajkdkaioquwienapkmbka", true))
 end

@@ -16,3 +16,12 @@
     ├── u       --玩家服
     └── w       --世界服
 ```
+
+### 全局table
+- cfg       策划Lua配置相关
+- xlogger   日志模块(封装了对xlogger c服务的操作，以及开发期日志打印)
+
+
+### 通用单例
+- App       每个dysonet服务都有一个App单例对象，用来管理一个Lua服务
+- Api       各种Api接口的单例对象，例如：ApiGM、ApiClient、ApiServer、ApiHttp等
