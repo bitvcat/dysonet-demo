@@ -18,7 +18,7 @@
 ```
 
 ### 全局table
-- cfg       策划Lua配置相关
+- Cfg       策划Lua配置相关
 - xlogger   日志模块(封装了对xlogger c服务的操作，以及开发期日志打印)
 
 

@@ -3,6 +3,8 @@ require("common.app")
 
 local App = Extend("App")
 function App:OnInit()
+    Cfg:Init("assets/config")
+    Cfg:LoadCfg()
 end
 
 function App:OnStart()
@@ -10,9 +12,11 @@ function App:OnStart()
     self.actor:open("cluster", require("svr.m.api.server.init"))
     self.actor:open("console", require("svr.m.api.gm.init"))
 
+    Cfg:InitCfg()
     -- xlogger.logf("client", "a=%d, b=%d", 100, 2000)
     -- xlogger.print("hello", "world")
     --xlogger.print(self, "你好")
     xlogger.print(string.trim("   testabab", "ab"))
     xlogger.print(string.tohex("123456789abcadadadandjadjhajdhjahdjahjdajkdkaioquwienapkmbka", true))
+    xlogger.print(Cfg:Get("task", 1))
 end
