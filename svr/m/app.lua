@@ -8,11 +8,16 @@ function App:OnInit()
 end
 
 function App:OnStart()
+    -- create
     self.actor:create("client", require("svr.m.api.client.init"))
     self.actor:create("cluster", require("svr.m.api.server.init"))
     self.actor:create("console", require("svr.m.api.gm.init"))
+    self.actor:create("http", require("svr.m.api.http.init"))
+
+    -- open
     self.actor:open("client")
     self.actor:open("console")
+    self.actor:open("http")
 
     Cfg:InitCfg()
     -- xlogger.logf("client", "a=%d, b=%d", 100, 2000)

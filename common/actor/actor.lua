@@ -4,7 +4,7 @@
 1. 网关服务收到消息，先进行拆包处理；
 2. 网关服务将数据包交给应用服务的 actor 模块进行处理；
     网关发送给应用服务的参数格式如下：
-    skynet.send(actor_service, "lua", "client/cluster/internal/console", "cmd" ...)
+    skynet.send(actor_service, "lua", "client/cluster/internal/console/http", "cmd" ...)
 --]]
 
 local skynet = require("skynet")
@@ -16,6 +16,9 @@ function Actor:__ctor()
     self.internal = false --处理节点内部消息
     self.console = false --处理debug_console消息
     self.http = false --处理http消息
+
+    -- 记录子服务
+    -- TODO
 end
 
 function Actor:start()
