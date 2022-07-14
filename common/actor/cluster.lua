@@ -4,16 +4,15 @@ local skynet = require "skynet"
 local cluster = require "skynet.cluster"
 
 local Cluster = Class("Cluster")
-function Cluster:__ctor()
-    self.nodes = {}
-    self.apiobj = false
-end
-
-function Cluster:open(apiobj)
+function Cluster:__ctor(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
 
+    self.nodes = {}
+end
+
+function Cluster:open()
     -- local addrs = {
     --     db = "127.0.0.1:2528",
     --     db2 = "127.0.0.1:2529",

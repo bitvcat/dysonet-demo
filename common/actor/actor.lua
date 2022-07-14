@@ -24,11 +24,21 @@ function Actor:start()
     end)
 end
 
+function Actor:getClassName(typename)
+    return string.upper(string.sub(typename, 1, 1)) .. string.sub(typename, 2)
+end
+
+function Actor:create(typename, api)
+    local clsname = self:getClassName(typename)
+    self[typename] = _G[clsname]:New(api)
+end
+
 function Actor:open(typename, api)
-    local clsname = string.upper(string.sub(typename, 1, 1)) .. string.sub(typename, 2)
-    local obj = _G[clsname]:New()
-    self[typename] = obj
-    obj:open(api)
+    local obj = self[typename]
+    assert(obj, typename)
+    if obj.open then
+        obj:open()
+    end
 end
 
 --- 消息派发处理

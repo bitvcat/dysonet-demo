@@ -2,5 +2,6 @@ syntax = "proto3";
 
 message MsgPackage {
     int32 opcode = 1;       // 协议号
-    bytes args = 2;         // 协议内容
+    int32 session = 2;      // 会话id
+    bytes args = 3;         // 协议内容
 }

@@ -6,16 +6,15 @@
 local skynet = require "skynet"
 
 local Console = Class("Console")
-function Console:__ctor()
-    self.addr = false
-    self.apiobj = false
-end
-
-function Console:open(apiobj)
+function Console:__ctor(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
 
+    self.addr = false
+end
+
+function Console:open()
     local debug_port = skynet.getenv("debug_port")
     if debug_port then
         self.addr = assert(skynet.newservice("debug_console", debug_port))
@@ -34,7 +33,11 @@ function Console:dispatch(session, source, cmd, ...)
 end
 
 function Console:hotfix(...)
+    -- 热更配置
 
+    -- 热更协议
+
+    -- 热更代码
 end
 
 -- 处理gm命令

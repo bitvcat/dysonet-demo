@@ -5,17 +5,17 @@
 local skynet = require "skynet"
 
 local Client = Class("Client")
-function Client:__ctor()
-    self.tcpGate = false
-    self.links = {}
-    self.closeCallback = nil
-    self.apiobj = nil
-end
-
-function Client:open(apiobj)
+function Client:__ctor(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
+
+    self.tcpGate = false
+    self.links = {}
+    self.closeCallback = nil
+end
+
+function Client:open()
     -- gate service
     self.tcpGate = assert(skynet.newservice("gate_tcp"))
 
@@ -72,15 +72,22 @@ function Client:onConnect(fd, addr, gateNode, gateAddr)
     self.links[fd] = link
 end
 
-function Client:onMessage(fd, opname, args)
+function Client:onMessage(fd, opname, args, session)
     local link = self:getLink(fd)
     if link then
         return
     end
 
+    assert(session >= 0, session)
+    local ok = self.apiobj:judgLink(link, opname, args)
+    if not ok then
+        -- logger
+        -- TODO
+        return
+    end
     local opfunc = self.apiobj[opname]
     if opfunc then
-        opfunc(self.apiobj, link, args)
+        opfunc(self.apiobj, link, args, session)
     end
 end
 
@@ -94,6 +101,9 @@ function Client:onClose(fd, reason)
 end
 
 --- 消息发送处理
-function Client:send(fd, opname, args)
-    self:_sendToLink(fd, "write", opname, args)
+function Client:send(fd, opname, args, session)
+    if session > 0 then
+        session = session | 0x80000000
+    end
+    self:_sendToLink(fd, "write", opname, args, session)
 end
