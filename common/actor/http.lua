@@ -1,9 +1,10 @@
 --- http actor
 
 local skynet = require "skynet"
+local cjson = require "cjson"
 
 local Http = Class("Http")
-function Http:__ctor(apiobj)
+function Http:__Init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
@@ -11,7 +12,7 @@ function Http:__ctor(apiobj)
     self.httpGate = false
 end
 
-function Http:open()
+function Http:Open()
     self.httpGate = assert(skynet.newservice("gate_http"))
 
     -- open http
@@ -25,12 +26,29 @@ function Http:open()
 end
 
 --- 消息派发处理
-function Http:dispatch(session, source, cmd, ...)
+function Http:Dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(self, ...)
 end
 
-function Http:onMessage(url, method, request)
+function Http:onMessage(linkobj, path, method, query, header, body)
+    xlogger.print(linkobj, path, method, query, header, body)
+    local mod = self.apiobj[path]
+    local func = mod and mod[method]
+    if not func then
+        return self:response(linkobj, 501)
+    else
+        local resp = func(query, body)
+        return self:response(linkobj, 200, resp)
+    end
+end
 
+function Http:response(linkobj, code, body, header)
+    header = header or {}
+    header["content-type"] = "application/json;charset=utf-8"
+    if body and type(body) == "table" then
+        body = cjson.encode(body)
+    end
+    return code, body, header
 end

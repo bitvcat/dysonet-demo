@@ -1,21 +1,21 @@
 -- internal actor
 -- eg.:
---  skynet.send(addr, "lua", "internal, "api", "ping", ...)
---  skynet.send(addr, "lua", "internal, "exec", ...)
+--  skynet.send(addr, "lua", "Internal, "api", "ping", ...)
+--  skynet.send(addr, "lua", "Internal, "exec", ...)
 
 local skynet = require "skynet"
 
 local Internal = Class("Internal")
-function Internal:__ctor(apiobj)
+function Internal:__Init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
 end
 
-function Internal:open(apiobj)
+function Internal:Open(apiobj)
 end
 
-function Internal:dispatch(cmd, ...)
+function Internal:Dispatch(cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(...)

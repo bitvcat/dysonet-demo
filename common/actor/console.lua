@@ -1,12 +1,12 @@
 --- console actor
 -- eg.:
---  skynet.send(addr, "lua", "console", "gm", "addItem", ...)
---  skynet.send(addr, "lua", "console", "hotfix", "addItem", ...)
+--  skynet.send(addr, "lua", "Console", "gm", "addItem", ...)
+--  skynet.send(addr, "lua", "Console", "hotfix", "addItem", ...)
 
 local skynet = require "skynet"
 
 local Console = Class("Console")
-function Console:__ctor(apiobj)
+function Console:__Init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
@@ -14,7 +14,7 @@ function Console:__ctor(apiobj)
     self.addr = false
 end
 
-function Console:open()
+function Console:Open()
     local debug_port = skynet.getenv("debug_port")
     if debug_port then
         self.addr = assert(skynet.newservice("debug_console", debug_port))
@@ -26,7 +26,7 @@ function Console:open()
 end
 
 --- 消息派发处理
-function Console:dispatch(session, source, cmd, ...)
+function Console:Dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(self, ...)

@@ -4,7 +4,7 @@ local skynet = require "skynet"
 local cluster = require "skynet.cluster"
 
 local Cluster = Class("Cluster")
-function Cluster:__ctor(apiobj)
+function Cluster:__Init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
@@ -12,7 +12,7 @@ function Cluster:__ctor(apiobj)
     self.nodes = {}
 end
 
-function Cluster:open()
+function Cluster:Open()
     -- local addrs = {
     --     db = "127.0.0.1:2528",
     --     db2 = "127.0.0.1:2529",
@@ -23,7 +23,7 @@ function Cluster:open()
 end
 
 --- 消息派发处理
-function Cluster:dispatch(session, source, cmd, ...)
+function Cluster:Dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(self, ...)
@@ -40,6 +40,6 @@ function Cluster:exec()
 end
 
 --- 消息发送处理
-function Cluster:send(node, addr)
+function Cluster:Send(node, addr)
     cluster.call("db2", "@sdb", "GET", "b")
 end

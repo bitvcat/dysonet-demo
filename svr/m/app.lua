@@ -5,19 +5,19 @@ local App = Extend("App")
 function App:OnInit()
     Cfg:Init("assets/config")
     Cfg:LoadCfg()
+
+    -- init
+    Client:Init(require("svr.m.api.client.init"))
+    Cluster:Init(require("svr.m.api.server.init"))
+    Console:Init(require("svr.m.api.gm.init"))
+    Http:Init(require("svr.m.api.http.init"))
 end
 
 function App:OnStart()
-    -- create
-    self.actor:create("client", require("svr.m.api.client.init"))
-    self.actor:create("cluster", require("svr.m.api.server.init"))
-    self.actor:create("console", require("svr.m.api.gm.init"))
-    self.actor:create("http", require("svr.m.api.http.init"))
-
     -- open
-    self.actor:open("client")
-    self.actor:open("console")
-    self.actor:open("http")
+    Client:Open()
+    Console:Open()
+    Http:Open()
 
     Cfg:InitCfg()
     -- xlogger.logf("client", "a=%d, b=%d", 100, 2000)
