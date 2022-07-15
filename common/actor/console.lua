@@ -6,7 +6,7 @@
 local skynet = require "skynet"
 
 local Console = Class("Console")
-function Console:__Init(apiobj)
+function Console:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
@@ -14,7 +14,7 @@ function Console:__Init(apiobj)
     self.addr = false
 end
 
-function Console:Open()
+function Console:open()
     local debug_port = skynet.getenv("debug_port")
     if debug_port then
         self.addr = assert(skynet.newservice("debug_console", debug_port))
@@ -26,7 +26,7 @@ function Console:Open()
 end
 
 --- 消息派发处理
-function Console:Dispatch(session, source, cmd, ...)
+function Console:dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(self, ...)

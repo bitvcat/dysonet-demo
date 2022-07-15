@@ -5,7 +5,7 @@ require("common.cfg.cfg")
 local skynet = require("skynet")
 
 local App = Class("App")
-function App:__Init(serviceName, ...)
+function App:__init(serviceName, ...)
     skynet.error("----- App Init -----")
     xlogger.init()
 
@@ -14,36 +14,36 @@ function App:__Init(serviceName, ...)
     self.serviceName = serviceName
     skynet.error("SERVICENAME", SERVICE_NAME)
 
-    if self.OnInit then
-        self:OnInit(...)
+    if self.onInit then
+        self:onInit(...)
     end
 end
 
-function App:Start(...)
+function App:start(...)
     skynet.error("----- App Start -----")
     skynet.dispatch("lua", function(...)
-        self:Dispatch(...)
+        self:dispatch(...)
     end)
 
-    if self.OnStart then
-        self:OnStart(...)
+    if self.onStart then
+        self:onStart(...)
     end
 end
 
 --- 消息派发处理
-function App:Dispatch(session, source, typename, ...)
+function App:dispatch(session, source, typename, ...)
     local handler = _G[typename]
     if handler then
         if session ~= 0 then
-            skynet.retpack(handler:Dispatch(session, source, ...))
+            skynet.retpack(handler:dispatch(session, source, ...))
         else
-            handler:Dispatch(session, source, ...)
+            handler:dispatch(session, source, ...)
         end
     else
         skynet.error(string.format("op=dispatch,typename=%s not exist", typename))
     end
 end
 
-function App:LoadEnv()
+function App:loadEnv()
     --local nodes = skynet.getenv("")
 end

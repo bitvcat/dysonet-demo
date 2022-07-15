@@ -4,7 +4,7 @@ local skynet = require "skynet"
 local cjson = require "cjson"
 
 local Http = Class("Http")
-function Http:__Init(apiobj)
+function Http:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
@@ -12,7 +12,7 @@ function Http:__Init(apiobj)
     self.httpGate = false
 end
 
-function Http:Open()
+function Http:open()
     self.httpGate = assert(skynet.newservice("gate_http"))
 
     -- open http
@@ -26,7 +26,7 @@ function Http:Open()
 end
 
 --- 消息派发处理
-function Http:Dispatch(session, source, cmd, ...)
+function Http:dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(self, ...)

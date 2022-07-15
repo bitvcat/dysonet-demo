@@ -2,9 +2,9 @@
 require("common.app")
 
 local App = Extend("App")
-function App:OnInit()
+function App:onInit()
     Cfg:Init("assets/config")
-    Cfg:LoadCfg()
+    Cfg:loadCfg()
 
     -- init
     Client:Init(require("svr.m.api.client.init"))
@@ -13,17 +13,17 @@ function App:OnInit()
     Http:Init(require("svr.m.api.http.init"))
 end
 
-function App:OnStart()
+function App:onStart()
     -- open
-    Client:Open()
-    Console:Open()
-    Http:Open()
+    Client:open()
+    Console:open()
+    Http:open()
 
-    Cfg:InitCfg()
+    Cfg:initCfg()
     -- xlogger.logf("client", "a=%d, b=%d", 100, 2000)
     -- xlogger.print("hello", "world")
     --xlogger.print(self, "你好")
     xlogger.print(string.trim("   testabab", "ab"))
     xlogger.print(string.tohex("123456789abcadadadandjadjhajdhjahdjahjdajkdkaioquwienapkmbka", true))
-    xlogger.print(Cfg:Get("task", 1))
+    xlogger.print(Cfg:get("task", 1))
 end

@@ -6,16 +6,16 @@
 local skynet = require "skynet"
 
 local Internal = Class("Internal")
-function Internal:__Init(apiobj)
+function Internal:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
 end
 
-function Internal:Open(apiobj)
+function Internal:open(apiobj)
 end
 
-function Internal:Dispatch(cmd, ...)
+function Internal:dispatch(cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(...)

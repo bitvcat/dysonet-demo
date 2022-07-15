@@ -5,7 +5,7 @@
 local skynet = require "skynet"
 
 local Client = Class("Client")
-function Client:__Init(apiobj)
+function Client:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
@@ -15,7 +15,7 @@ function Client:__Init(apiobj)
     self.closeCallback = nil
 end
 
-function Client:Open()
+function Client:open()
     -- gate service
     self.tcpGate = assert(skynet.newservice("gate_tcp"))
 
@@ -29,7 +29,7 @@ function Client:Open()
 end
 
 --- 消息派发处理
-function Client:Dispatch(session, source, cmd, ...)
+function Client:dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(self, ...)
@@ -101,7 +101,7 @@ function Client:onClose(fd, reason)
 end
 
 --- 消息发送处理
-function Client:Send(fd, opname, args, session)
+function Client:send(fd, opname, args, session)
     if session > 0 then
         session = session | 0x80000000
     end
