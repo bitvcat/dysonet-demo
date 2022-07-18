@@ -39,7 +39,7 @@ function Http:onMessage(linkobj, path, method, query, header, body)
     if not func then
         return self:response(linkobj, 501)
     else
-        local resp = func(query, body)
+        local resp = func(linkobj, query, body)
         return self:response(linkobj, 200, resp)
     end
 end
