@@ -27,4 +27,6 @@ function App:onStart()
     xlogger.print(string.trim("   testabab", "ab"))
     xlogger.print(string.tohex("123456789abcadadadandjadjhajdhjahdjahjdajkdkaioquwienapkmbka", true))
     xlogger.print(Cfg:get("task", 1))
+    xlogger.print(string.tohex("abc", true))
+    xlogger.print(string.tohex(string.pack(">s2","abc"), true))
 end
