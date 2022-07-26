@@ -33,6 +33,7 @@ function tcp.start(ip, port)
     tcp.encryptKey = ""
 
     socket_start(fd)
+    tcp.send(nil, "client hello")
     skynet.timeout(0, function()
         while true do
             local ok, msg = socket_read(fd)
@@ -58,7 +59,11 @@ function tcp.onMessage(fd, msg)
         socket_write(tcp.fd, outmsg)
         tcp.encryptKey = encryptKey
         tcp.handshake = 1
-    else
+    elseif tcp.handshake == 1 then
+        local _, args = protobuf.decode_message(msg)
+        assert(args == "server done", args)
+        tcp.handshake = 2
+    elseif tcp.handshake == 2 then
         local opname, args = protobuf.decode_message(msg)
         skynet.error(opname, args)
     end

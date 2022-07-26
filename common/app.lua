@@ -2,17 +2,17 @@
 require("dysonet.init")
 require("common.actor.init")
 require("common.cfg.cfg")
-local skynet = require("skynet")
 
 local App = Class("App")
 function App:__init(serviceName, ...)
+    local skynet = dysonet.skynet
     skynet.error("----- App Init -----")
     xlogger.init()
 
-    self.nodes = require("etc.nodes")
     self.nodeName = skynet.getenv("name")
     self.serviceName = serviceName
     skynet.error("SERVICENAME", SERVICE_NAME)
+    self.dbs = {}
 
     if self.onInit then
         self:onInit(...)
@@ -20,6 +20,7 @@ function App:__init(serviceName, ...)
 end
 
 function App:start(...)
+    local skynet = dysonet.skynet
     skynet.error("----- App Start -----")
     skynet.dispatch("lua", function(...)
         self:dispatch(...)
@@ -32,6 +33,7 @@ end
 
 --- 消息派发处理
 function App:dispatch(session, source, typename, ...)
+    local skynet = dysonet.skynet
     local handler = _G[typename]
     if handler then
         if session ~= 0 then
@@ -44,6 +46,11 @@ function App:dispatch(session, source, typename, ...)
     end
 end
 
-function App:loadEnv()
-    --local nodes = skynet.getenv("")
+function App:initDB()
+    local mongoConf = {}
+    local mongoClient = dysonet.mongo.client()
+end
+
+function App:getDB()
+
 end

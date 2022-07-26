@@ -1,4 +1,3 @@
--- gate
 thread = 8
 logboth = "@"
 logpath = "log"
@@ -22,4 +21,5 @@ lua_path = root .. "dysonet/skynet/lualib/?.lua;"
     .. root .. "dysonet/lualib/?.lua;"
     .. root .. "?.lua"
 
+-- gate
 gate_slave_num = 0

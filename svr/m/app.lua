@@ -3,7 +3,7 @@ require("common.app")
 
 local App = Extend("App")
 function App:onInit()
-    require("LuaPanda").start("127.0.0.1",8818)
+    --require("LuaPanda").start("127.0.0.1",8818)
     Cfg:Init("assets/config")
     Cfg:loadCfg()
 
@@ -21,12 +21,25 @@ function App:onStart()
     Http:open()
 
     Cfg:initCfg()
-    -- xlogger.logf("client", "a=%d, b=%d", 100, 2000)
-    -- xlogger.print("hello", "world")
-    --xlogger.print(self, "你好")
+
+    -- test
+    self:test()
+end
+
+function App:test()
+    -- test xlogger.logf
+    xlogger.logf("INFO", "client", "a=%d, b=%d", 100, 2000)
+
+    -- test string lib
     xlogger.print(string.trim("   testabab", "ab"))
     xlogger.print(string.tohex("123456789abcadadadandjadjhajdhjahdjahjdajkdkaioquwienapkmbka", true))
-    xlogger.print(Cfg:get("task", 1))
     xlogger.print(string.tohex("abc", true))
     xlogger.print(string.tohex(string.pack(">s2","abc"), true))
+
+    -- test cfg
+    xlogger.print(Cfg:get("task", 1))
+
+    -- test dysonet.xpcall
+    --local ok, err = dysonet.xpcall(function() return 1/a end)
+    --xlogger.print(ok, err)
 end

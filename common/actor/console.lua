@@ -3,8 +3,6 @@
 --  skynet.send(addr, "lua", "Console", "gm", "addItem", ...)
 --  skynet.send(addr, "lua", "Console", "hotfix", "addItem", ...)
 
-local skynet = require "skynet"
-
 local Console = Class("Console")
 function Console:__init(apiobj)
     assert(type(apiobj) == "table")
@@ -15,6 +13,7 @@ function Console:__init(apiobj)
 end
 
 function Console:open()
+    local skynet = dysonet.skynet
     local debug_port = skynet.getenv("debug_port")
     if debug_port then
         self.addr = assert(skynet.newservice("debug_console", debug_port))

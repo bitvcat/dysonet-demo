@@ -2,8 +2,6 @@
 -- eg.:
 --  skynet.send(addr, "lua", "Client", "onMessage", "C2S_Task_Finish", ...)
 
-local skynet = require "skynet"
-
 local Client = Class("Client")
 function Client:__init(apiobj)
     assert(type(apiobj) == "table")
@@ -16,6 +14,7 @@ function Client:__init(apiobj)
 end
 
 function Client:open()
+    local skynet = dysonet.skynet
     -- gate service
     self.tcpGate = assert(skynet.newservice("gate_tcp"))
 
@@ -38,7 +37,7 @@ end
 function Client:_sendToLink(fd, cmd, ...)
     local link = self:getLink(fd)
     if link then
-        skynet.send(link.gateAddr, "lua", cmd, fd, ...)
+        dysonet.skynet.send(link.gateAddr, "lua", cmd, fd, ...)
     end
 end
 

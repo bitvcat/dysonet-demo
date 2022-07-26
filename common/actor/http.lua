@@ -1,8 +1,5 @@
 --- http actor
 
-local skynet = require "skynet"
-local cjson = require "cjson"
-
 local Http = Class("Http")
 function Http:__init(apiobj)
     assert(type(apiobj) == "table")
@@ -13,6 +10,7 @@ function Http:__init(apiobj)
 end
 
 function Http:open()
+    local skynet = dysonet.skynet
     self.httpGate = assert(skynet.newservice("gate_http"))
 
     -- open http
@@ -48,7 +46,7 @@ function Http:response(linkobj, code, body, header)
     header = header or {}
     header["content-type"] = "application/json;charset=utf-8"
     if body and type(body) == "table" then
-        body = cjson.encode(body)
+        body = dysonet.cjson.encode(body)
     end
     return code, body, header
 end

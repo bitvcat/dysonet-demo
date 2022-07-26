@@ -3,8 +3,6 @@
 --  skynet.send(addr, "lua", "Internal, "api", "ping", ...)
 --  skynet.send(addr, "lua", "Internal, "exec", ...)
 
-local skynet = require "skynet"
-
 local Internal = Class("Internal")
 function Internal:__init(apiobj)
     assert(type(apiobj) == "table")

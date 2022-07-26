@@ -1,8 +1,5 @@
 --- cluster actor
 
-local skynet = require "skynet"
-local cluster = require "skynet.cluster"
-
 local Cluster = Class("Cluster")
 function Cluster:__init(apiobj)
     assert(type(apiobj) == "table")
@@ -13,6 +10,7 @@ function Cluster:__init(apiobj)
 end
 
 function Cluster:open()
+    local cluster = dysonet.cluster
     -- local addrs = {
     --     db = "127.0.0.1:2528",
     --     db2 = "127.0.0.1:2529",
