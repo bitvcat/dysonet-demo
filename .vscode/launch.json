@@ -15,7 +15,9 @@
             "connectionPort": 8818,
             "stopOnEntry": true,
             "useCHook": true,
-            "autoPathMode": true
+            "autoPathMode": true,
+            "VSCodeAsClient": true,
+            "connectionIP": "127.0.0.1"
         },
         {
             "type": "lua",

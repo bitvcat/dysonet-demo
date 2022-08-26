@@ -47,7 +47,13 @@ function App:dispatch(session, source, typename, ...)
 end
 
 function App:initDB()
-    local mongoConf = {}
+    local mongoConf = {
+        host = host,
+        port = port,
+		username = username,
+        password = password,
+		authdb = db_name,
+    }
     local mongoClient = dysonet.mongo.client()
 end
 

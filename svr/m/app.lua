@@ -3,7 +3,8 @@ require("common.app")
 
 local App = Extend("App")
 function App:onInit()
-    --require("LuaPanda").start("127.0.0.1",8818)
+    require("LuaPanda").startServer("127.0.0.1",8818)
+
     Cfg:Init("assets/config")
     Cfg:loadCfg()
 
