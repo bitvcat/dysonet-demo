@@ -39,6 +39,7 @@ function App:test()
 
     -- test cfg
     xlogger.print(Cfg:get("task", 1))
+    xlogger.color("GREEN", Cfg:get("task", 2))
 
     -- test dysonet.xpcall
     --local ok, err = dysonet.xpcall(function() return 1/a end)
