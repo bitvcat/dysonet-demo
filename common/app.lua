@@ -7,7 +7,7 @@ local App = Class("App")
 function App:__init(serviceName, ...)
     local skynet = dysonet.skynet
     skynet.error("----- App Init -----")
-    xlogger.init()
+    logger.init()
 
     self.nodeName = skynet.getenv("name")
     self.serviceName = serviceName

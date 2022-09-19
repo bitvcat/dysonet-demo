@@ -31,7 +31,7 @@ function Http:dispatch(session, source, cmd, ...)
 end
 
 function Http:onMessage(linkobj, path, method, query, header, body)
-    xlogger.print(linkobj, path, method, query, header, body)
+    logger.print(linkobj, path, method, query, header, body)
     local mod = self.apiobj[path]
     local func = mod and mod[method]
     if not func then

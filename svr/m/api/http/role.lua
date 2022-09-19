@@ -6,7 +6,7 @@ function handler.GET()
 end
 
 function handler.POST(linkobj, query, body)
-    xlogger.print(query, cjson.decode(body))
+    logger.print(query, cjson.decode(body))
     return { code = 0, msg = "xxxx" }
 end
 
