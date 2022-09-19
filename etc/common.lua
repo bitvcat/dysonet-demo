@@ -23,3 +23,5 @@ lua_path = root .. "dysonet/skynet/lualib/?.lua;"
 
 -- gate
 gate_slave_num = 0
+certfile = "./assets/ssl/server-cert.pem"
+keyfile = "./assets/ssl/server-key.pem"

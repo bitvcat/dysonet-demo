@@ -3,7 +3,7 @@ require("common.app")
 
 local App = Extend("App")
 function App:onInit()
-    require("LuaPanda").startServer("127.0.0.1",8818)
+    --require("LuaPanda").startServer("127.0.0.1",8818)
 
     Cfg:Init("assets/config")
     Cfg:loadCfg()
@@ -19,7 +19,7 @@ function App:onStart()
     -- open
     Client:open()
     Console:open()
-    Http:open()
+    Http:open(Http.FLAG_HTTP | Http.FLAG_HTTPS)
 
     Cfg:initCfg()
 

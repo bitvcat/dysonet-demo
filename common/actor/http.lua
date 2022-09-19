@@ -1,15 +1,29 @@
 --- http actor
 
 local Http = Class("Http")
+Http.FLAG_HTTP  = 0x01
+Http.FLAG_HTTPS = 0X02
+
 function Http:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
 
-    self.httpGate = false
+    self.httpGate = false       -- http gate
+    self.httpsGate = false      -- https gate
 end
 
-function Http:open()
+function Http:open(flag)
+    if (flag & Http.FLAG_HTTP) == Http.FLAG_HTTP then
+        self:openHttp()
+    end
+
+    if (flag & Http.FLAG_HTTPS) == Http.FLAG_HTTPS then
+        self:openHttps()
+    end
+end
+
+function Http:openHttp()
     local skynet = dysonet.skynet
     self.httpGate = assert(skynet.newservice("gate_http"))
 
@@ -17,10 +31,24 @@ function Http:open()
     local gateConf = {
         port = tonumber(skynet.getenv("http_port")),
         slaveNum = tonumber(skynet.getenv("gate_slave_num")),
-        protocol = "http",
         watchdog = skynet.self()
     }
     skynet.call(self.httpGate, "lua", "open", gateConf)
+end
+
+function Http:openHttps()
+    local skynet = dysonet.skynet
+    self.httpsGate = assert(skynet.newservice("gate_https"))
+
+    -- open http
+    local gateConf = {
+        port = tonumber(skynet.getenv("https_port")),
+        slaveNum = tonumber(skynet.getenv("gate_slave_num")),
+        watchdog = skynet.self(),
+        certfile = skynet.getenv("certfile"),
+        keyfile = skynet.getenv("keyfile"),
+    }
+    skynet.call(self.httpsGate, "lua", "open", gateConf)
 end
 
 --- 消息派发处理
