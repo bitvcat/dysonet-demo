@@ -1,8 +1,11 @@
 -- config
 include("common.lua")
 
-tcp_port = 12345
-http_port = 22345
+tcp_port = 10001
+http_port = 11001
+https_port = 12001
+ws_port = 13001
+wss_port = 14001
 debug_port = 20001
 start = "svr/m/main"
 name = "map"

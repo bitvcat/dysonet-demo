@@ -17,9 +17,9 @@ end
 
 function App:onStart()
     -- open
-    Client:open()
     Console:open()
-    Http:open(Http.FLAG_HTTP | Http.FLAG_HTTPS)
+    Client:open(CONST.GATE_TCP | CONST.GATE_WS)
+    Http:open(CONST.GATE_HTTP | CONST.GATE_HTTPS)
 
     Cfg:initCfg()
 

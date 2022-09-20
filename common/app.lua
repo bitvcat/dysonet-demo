@@ -1,5 +1,6 @@
 -- app
 require("dysonet.init")
+require("common.const.init")
 require("common.actor.init")
 require("common.cfg.cfg")
 

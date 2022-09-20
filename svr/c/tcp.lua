@@ -32,6 +32,12 @@ function tcp.start(ip, port)
     tcp.publicKey = crypt.dhexchange(secretKey)
     tcp.encryptKey = ""
 
+    tcp.dispatch_message(fd)
+end
+
+function tcp.dispatch_message(fd)
+    -- 使用 package 的方式
+    -- 注意：使用这种方式时，必须先订阅完后，客户端告知服务器已订阅成功的消息后，服务器才能下发数据
     socket_start(fd)
     tcp.send(nil, "client hello")
     skynet.timeout(0, function()
@@ -42,6 +48,22 @@ function tcp.start(ip, port)
                 break
             end
 
+            xpcall(tcp.onMessage, skynet.error, fd, msg)
+        end
+    end)
+end
+
+function tcp.dispatch_message_raw(fd)
+    skynet.timeout(0, function()
+        while true do
+            local sizebuf = socket.read(fd, 2)
+            if not sizebuf then
+                socket.close(fd)
+                break
+            end
+
+            local msglen = string.unpack(">I2", sizebuf)
+            local msg = socket.read(fd, msglen)
             xpcall(tcp.onMessage, skynet.error, fd, msg)
         end
     end)

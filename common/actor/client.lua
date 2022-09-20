@@ -9,11 +9,14 @@ function Client:__init(apiobj)
     self.apiobj:Init()
 
     self.tcpGate = false
+    self.kcpGate = false
+    self.wsGate = false
+    self.wssGate = false
     self.links = {}
     self.closeCallback = nil
 end
 
-function Client:open()
+function Client:_openTcp()
     local skynet = dysonet.skynet
     -- gate service
     self.tcpGate = assert(skynet.newservice("gate_tcp"))
@@ -25,6 +28,35 @@ function Client:open()
         watchdog = skynet.self()
     }
     skynet.call(self.tcpGate, "lua", "open", gateConf)
+end
+
+function Client:_openWebsocket(protocol)
+    local skynet = dysonet.skynet
+    -- gate service
+    local gate = assert(skynet.newservice("gate_ws"))
+
+    -- open gate
+    local gateConf = {
+        port = tonumber(skynet.getenv(protocol.."_port")),
+        slaveNum = tonumber(skynet.getenv("gate_slave_num")),
+        watchdog = skynet.self(),
+        protocol = protocol
+    }
+    skynet.call(gate, "lua", "open", gateConf)
+    return gate
+end
+
+function Client:open(flag)
+    if (flag & CONST.GATE_TCP) == CONST.GATE_TCP then
+        self:_openTcp()
+    end
+
+    if (flag & CONST.GATE_WS) == CONST.GATE_WS then
+        self.wsGate = self:_openWebsocket("ws")
+    end
+    if (flag & CONST.GATE_WSS) == CONST.GATE_WSS then
+        self.wssGate = self:_openWebsocket("wss")
+    end
 end
 
 --- 消息派发处理
