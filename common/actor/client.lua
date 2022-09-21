@@ -8,54 +8,37 @@ function Client:__init(apiobj)
     self.apiobj = apiobj
     self.apiobj:Init()
 
-    self.tcpGate = false
-    self.kcpGate = false
-    self.wsGate = false
-    self.wssGate = false
     self.links = {}
     self.closeCallback = nil
 end
 
-function Client:_openTcp()
+function Client:getGateConfig(protocol)
     local skynet = dysonet.skynet
-    -- gate service
-    self.tcpGate = assert(skynet.newservice("gate_tcp"))
-
-    -- open gate
-    local gateConf = {
-        port = tonumber(skynet.getenv("tcp_port")),
-        slaveNum = tonumber(skynet.getenv("gate_slave_num")),
-        watchdog = skynet.self()
-    }
-    skynet.call(self.tcpGate, "lua", "open", gateConf)
-end
-
-function Client:_openWebsocket(protocol)
-    local skynet = dysonet.skynet
-    -- gate service
-    local gate = assert(skynet.newservice("gate_ws"))
-
-    -- open gate
     local gateConf = {
         port = tonumber(skynet.getenv(protocol.."_port")),
         slaveNum = tonumber(skynet.getenv("gate_slave_num")),
         watchdog = skynet.self(),
         protocol = protocol
     }
-    skynet.call(gate, "lua", "open", gateConf)
+    local suffix = protocol == "wss" and "ws" or protocol
+    return "gate_"..suffix, gateConf
+end
+
+function Client:_open(protocol)
+    local skynet = dysonet.skynet
+    local gateName, conf = self:getGateConfig(protocol)
+    assert(gateName)
+
+    local gate = assert(skynet.newservice(gateName))
+    skynet.call(gate, "lua", "open", conf)
     return gate
 end
 
 function Client:open(flag)
-    if (flag & CONST.GATE_TCP) == CONST.GATE_TCP then
-        self:_openTcp()
-    end
-
-    if (flag & CONST.GATE_WS) == CONST.GATE_WS then
-        self.wsGate = self:_openWebsocket("ws")
-    end
-    if (flag & CONST.GATE_WSS) == CONST.GATE_WSS then
-        self.wssGate = self:_openWebsocket("wss")
+    for mask, protocol in pairs(CONST.GATE) do
+        if (flag & mask) == mask then
+            self[protocol] = self:_open(protocol)
+        end
     end
 end
 
@@ -73,13 +56,14 @@ function Client:_sendToLink(fd, cmd, ...)
     end
 end
 
-function Client:newLink(fd, addr, gateNode, gateAddr)
+function Client:newLink(fd, addr, gateNode, gateAddr, protocol)
     local linkobj = {
         pid = 0,
         fd = assert(fd),
         addr = assert(addr),
         gateNode = assert(gateNode),
         gateAddr = assert(gateAddr),
+        protocol = assert(protocol)
     }
     return linkobj
 end
@@ -98,8 +82,8 @@ function Client:closeLink(fd)
 end
 
 --- onXXX
-function Client:onConnect(fd, addr, gateNode, gateAddr)
-    local link = self:newLink(fd, addr, gateNode, gateAddr)
+function Client:onConnect(fd, addr, gateNode, gateAddr, protocol)
+    local link = self:newLink(fd, addr, gateNode, gateAddr, protocol)
     self.links[fd] = link
 end
 

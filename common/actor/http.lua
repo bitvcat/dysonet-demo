@@ -5,9 +5,6 @@ function Http:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
-
-    self.httpGate = false       -- http gate
-    self.httpsGate = false      -- https gate
 end
 
 function Http:_open(protocol)
@@ -25,12 +22,10 @@ function Http:_open(protocol)
 end
 
 function Http:open(flag)
-    if (flag & CONST.GATE_HTTP) == CONST.GATE_HTTP then
-        self.httpGate = self:_open("http")
-    end
-
-    if (flag & CONST.GATE_HTTPS) == CONST.GATE_HTTPS then
-        self.httpsGate = self:_open("https")
+    for mask, protocol in pairs(CONST.GATE) do
+        if (flag & mask) == mask then
+            self[protocol] = self:_open(protocol)
+        end
     end
 end
 
