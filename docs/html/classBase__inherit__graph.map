@@ -1,0 +1,4 @@
+<map id="Base" name="Base">
+<area shape="rect" id="node1" title="Base 类" alt="" coords="5,5,60,31"/>
+<area shape="rect" id="node2" href="$classFoo.html" title="Foo 类" alt="" coords="10,79,55,104"/>
+</map>

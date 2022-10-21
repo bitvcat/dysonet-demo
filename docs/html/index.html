@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dysonet: 目录结构</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Dysonet
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">目录结构 </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p ><a class="anchor" id="md__mnt_d_Codes_dysonet_demo_readme"></a></p><div class="fragment"><div class="line">.</div>
+<div class="line">├── dysonet                     -- 这里是引擎（第三方模块、服务等）</div>
+<div class="line">├── etc                         -- 这里放skynet启动配置、cluste节点配置等</div>
+<div class="line">├── assets                      -- 这里放游戏资产</div>
+<div class="line">│   ├── config                  -- excel 以及导表生成的 lua 配置文件</div>
+<div class="line">│   └── proto                   -- 协议文件</div>
+<div class="line">├── common                      -- 这里放游戏公共模块（跟游戏业务相关的模块）</div>
+<div class="line">├── docs                        -- 这里放服务器文档</div>
+<div class="line">├── tools                       -- 这里放工具链、脚本等</div>
+<div class="line">├── skynet                      -- 这个是skynet可执行程序，用于启动各游戏服</div>
+<div class="line">├── *.shell                     -- 这个是用于操作服务器的相关脚本，例如：start.sh、stop.sh 等等</div>
+<div class="line">└── svr                         -- 这里放各个游戏服</div>
+<div class="line">    ├── m       --地图服</div>
+<div class="line">    ├── u       --玩家服</div>
+<div class="line">    └── w       --世界服</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1"></a>
+全局table</h2>
+<ul>
+<li>xlogger 日志模块(封装了对xlogger c服务的操作，以及开发期日志打印)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md2"></a>
+通用单例</h2>
+<ul>
+<li><a class="el" href="classApp.html" title="App 类">App</a> 每个dysonet服务都有一个App单例对象，用来管理一个Lua服务</li>
+<li>Api 各种Api接口的单例对象，例如：ApiGM、ApiClient、ApiServer、ApiHttp等</li>
+<li>Cfg 策划Lua配置相关 </li>
+</ul>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>
