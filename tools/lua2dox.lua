@@ -605,10 +605,14 @@ function TLua2DoX_filter.readfile(this,AppStamp,Filename)
 					this:warning(inStream:getLineNo(),'something weird here')
 				end
 				fn_magic = nil -- mustn't indavertently use it again
-			elseif string.find(line,'=%s*class%(') then
+			elseif string.find(line,'=%s*[Cc]lass%(') then
+				-- 匹配 "= Class(" 或 "= class("
 				-- it's a class declaration
 				local tailComment
 				line,tailComment = TString_removeCommentFromLine(line)
+
+				-- 匹配 Foo = class() 这种类定义格式
+				--[[
 				local equals = string.find(line,'=')
 				local klass = string_trim(string.sub(line,1,equals-1))
 				local tail =  string_trim(string.sub(line,equals+1))
@@ -619,19 +623,21 @@ function TLua2DoX_filter.readfile(this,AppStamp,Filename)
 					parent = ' :public ' .. parent
 				end
 				outStream:writeln('class ' .. klass .. parent .. '{};')
-			elseif string.find(line,'=%s*Class%(') then
-				-- Class("Foo", "Base")
-				local class_str = string.match(line, "Class%((.+)%)")
-				local parent = {}
-				local parent_str = ""
-				string.gsub(class_str, '[^,]+', function(w) table.insert(parent, w) end)
-				local klass = string.match(string_trim(parent[1]), "^[\"]*(.-)[\"]*$")
+				]]
 
-				if #parent>1 then
+				-- 匹配 local Foo = class("Foo", Base) 或者 local Foo = class("Foo", "Base")
+				local class_str = string.match(line, "[Cc]lass%((.+)%)")
+				local classs = string_split(class_str, ',')
+				local klass = string.match(string_trim(classs[1]), "^[\"]*(.-)[\"]*$")
+
+				-- 继承的类
+				-- class Foo : public Base {};
+				local parent_str = ""
+				if #classs>1 then
 					parent_str = parent_str .. ":"
-					for i = 2, #parent do
-						parent_str = parent_str .. ' public ' .. string.match(string_trim(parent[i]), "^[\"]*(.-)[\"]*$")
-						if i < #parent then
+					for i = 2, #classs do
+						parent_str = parent_str .. ' public ' .. string.match(string_trim(classs[i]), "^[\"]*(.-)[\"]*$")
+						if i < #classs then
 							parent_str = parent_str .. ","
 						end
 					end

@@ -1,4 +1,8 @@
--- app
+--[[!
+    @file
+    @brief 节点主服务管理模块（单例类）。
+]]
+
 require("dysonet.init")
 require("common.const.init")
 require("common.actor.init")
@@ -9,7 +13,7 @@ require("common.cfg.cfg")
 --! @details 节点的App类，这是一个单例类。
 local App = Class("App")
 
---! @brief App constructor
+--! @brief App sington initialization
 function App:__init(serviceName, ...)
     local skynet = dysonet.skynet
     skynet.error("----- App Init -----")

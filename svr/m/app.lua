@@ -75,3 +75,9 @@ end
 local Bar = Class("Bar", "Base")
 function Bar:__init()
 end
+
+--! @class Dog
+--! @brief Dog 类
+local Dog = class("Dog", Foo, "Bar")
+function Dog:__init()
+end
