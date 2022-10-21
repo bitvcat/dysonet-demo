@@ -4,7 +4,12 @@ require("common.const.init")
 require("common.actor.init")
 require("common.cfg.cfg")
 
+--! @class App
+--! @brief App 类
+--! @details 节点的App类，这是一个单例类。
 local App = Class("App")
+
+--! @brief App constructor
 function App:__init(serviceName, ...)
     local skynet = dysonet.skynet
     skynet.error("----- App Init -----")
@@ -20,7 +25,8 @@ function App:__init(serviceName, ...)
     end
 end
 
-function App:start(...)
+--! @brief 节点启动
+function App:start()
     local skynet = dysonet.skynet
     skynet.error("----- App Start -----")
     skynet.dispatch("lua", function(...)
@@ -28,11 +34,14 @@ function App:start(...)
     end)
 
     if self.onStart then
-        self:onStart(...)
+        self:onStart()
     end
 end
 
---- 消息派发处理
+--! @brief 消息派发处理
+--! @param integer session 消息session id
+--! @param integer source 消息源服务地址
+--! @param string typename 消息类型[Client|Cluster|Console|Http|Internal]
 function App:dispatch(session, source, typename, ...)
     local skynet = dysonet.skynet
     local handler = _G[typename]

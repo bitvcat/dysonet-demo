@@ -17,12 +17,13 @@ skynet.start(function ()
             break
         end
         --websocket.ping(ws_id)
-        -- skynet.sleep(100)
-        -- break
+        websocket.close(ws_id, 123, "fuck")
+        skynet.sleep(100)
+        break
     end
 
-    websocket.close(ws_id)
+    --websocket.close(ws_id)
     --socket.shutdown(ws_id)
-    skynet.sleep(100)
+    --skynet.sleep(100)
     skynet.abort()
 end)

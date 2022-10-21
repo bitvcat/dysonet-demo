@@ -2,7 +2,18 @@
 -- eg.:
 --  skynet.send(addr, "lua", "Client", "onMessage", "C2S_Task_Finish", ...)
 
+--[[!
+    @file
+    @brief Client actor 类源文件。
+    @details 这里是详细描述。
+]]
+
+
+--! @class Client
+--! @brief Client Actor 类
 local Client = Class("Client")
+
+--! @brief Client constructor
 function Client:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
@@ -12,6 +23,19 @@ function Client:__init(apiobj)
     self.closeCallback = nil
 end
 
+--! @brief 获取网关配置
+--! @param string protocol 网关协议[tcp|ws|wss]
+--! @return 网关服务名
+--! @return 网关配置
+--!
+--! use as:
+--!	\code{lua}
+--!	TWibble = class()
+--!	function TWibble.init(instance)
+--!		self.instance = instance
+--!		-- more stuff here
+--!	end
+--! \endcode
 function Client:getGateConfig(protocol)
     local skynet = dysonet.skynet
     local gateConf = {

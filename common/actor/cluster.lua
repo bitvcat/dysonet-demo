@@ -1,5 +1,12 @@
 --- cluster actor
+--[[!
+    @file
+    @brief Cluster actor 类源文件。
+]]
 
+
+--! @class Cluster
+--! @brief Cluster Actor 类
 local Cluster = Class("Cluster")
 function Cluster:__init(apiobj)
     assert(type(apiobj) == "table")
