@@ -144,7 +144,7 @@ EXAMPLE_PATTERNS       = *
 EXAMPLE_RECURSIVE      = NO
 IMAGE_PATH             =
 INPUT_FILTER           =
-FILTER_PATTERNS        = *.lua="lua ./lua2dox.lua"
+FILTER_PATTERNS        = "*.lua=lua ./lua2dox.lua"
 FILTER_SOURCE_FILES    = NO
 FILTER_SOURCE_PATTERNS =
 USE_MDFILE_AS_MAINPAGE = ../readme.md
