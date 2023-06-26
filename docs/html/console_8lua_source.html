@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dysonet: /mnt/d/Codes/dysonet-demo/common/actor/console.lua 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Dysonet
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li><li class="navelem"><a class="el" href="dir_b722f6db5e4418f6c3180b368f58e8f4.html">actor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">console.lua</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span>--- console actor</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span>-- eg.:</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>--  skynet.send(addr, <span class="stringliteral">&quot;lua&quot;</span>, <span class="stringliteral">&quot;Console&quot;</span>, <span class="stringliteral">&quot;gm&quot;</span>, <span class="stringliteral">&quot;addItem&quot;</span>, ...)</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>--  skynet.send(addr, <span class="stringliteral">&quot;lua&quot;</span>, <span class="stringliteral">&quot;Console&quot;</span>, <span class="stringliteral">&quot;hotfix&quot;</span>, <span class="stringliteral">&quot;addItem&quot;</span>, ...)</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classConsole.html">    6</a></span>local <a class="code hl_class" href="classConsole.html">Console</a> = Class(<span class="stringliteral">&quot;Console&quot;</span>)</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>function <a class="code hl_class" href="classConsole.html">Console</a>:__init(apiobj)</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    assert(type(apiobj) == &quot;table&quot;)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    self.apiobj = apiobj</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    self.apiobj:Init()</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    self.addr = false</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>end</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>function <a class="code hl_class" href="classConsole.html">Console</a>:open()</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    local skynet = dysonet.skynet</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    local debug_port = skynet.getenv(&quot;debug_port&quot;)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    if debug_port then</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        self.addr = assert(skynet.newservice(&quot;debug_console&quot;, debug_port))</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        -- inject</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        local debug_console_inject = require &quot;debug_inject&quot;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        debug_console_inject(self.addr)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    end</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>end</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>--- 消息派发处理</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classConsole.html#aa3ac415d5d23cb9f813ec019dceb3226">   28</a></span>function <a class="code hl_class" href="classConsole.html">Console</a>:dispatch(session, source, cmd, ...)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    local func = self[cmd]</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    assert(func, cmd)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    return func(self, ...)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>end</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>function <a class="code hl_class" href="classConsole.html">Console</a>:hotfix(...)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    -- 热更配置</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    -- 热更协议</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    -- 热更代码</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>end</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>-- 处理gm命令</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>function <a class="code hl_class" href="classConsole.html">Console</a>:gm(subcmd, ...)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    local handler = self.apiobj[subcmd]</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    assert(handler, subcmd)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    if self.apiobj.filter then</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        return handler(self.apiobj:filter(...))</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    end</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    return handler(self.apiobj, ...)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>end</div>
+<div class="ttc" id="aclassConsole_html"><div class="ttname"><a href="classConsole.html">Console</a></div><div class="ttdoc">console actor</div><div class="ttdef"><b>Definition:</b> <a href="console_8lua_source.html#l00006">console.lua:6</a></div></div>
+<div class="ttc" id="aclassConsole_html_aa3ac415d5d23cb9f813ec019dceb3226"><div class="ttname"><a href="classConsole.html#aa3ac415d5d23cb9f813ec019dceb3226">Console::dispatch</a></div><div class="ttdeci">dispatch(session, source, cmd,...)</div><div class="ttdoc">消息派发处理</div><div class="ttdef"><b>Definition:</b> <a href="console_8lua_source.html#l00028">console.lua:28</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2022年 十一月 4日 星期五 16:54:37 , 为 Dysonet使用 &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>

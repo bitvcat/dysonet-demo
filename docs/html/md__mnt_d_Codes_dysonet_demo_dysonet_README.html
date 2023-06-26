@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dysonet: dysonnet</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Dysonet
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">dysonnet </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p >A game server base on skynet.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+简介</h1>
+<p >dysonet 是基于 skynet 二次封装的服务器框架，它在 skynet 的基础上增加了一些游戏常用的功能、模块。</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+特性</h1>
+<ul>
+<li>[x] 面向对象</li>
+<li>[x] logger</li>
+<li>[ ] mongodb</li>
+<li>[x] tcp gate(使用 skynet_package 实现)</li>
+<li>[ ] kcp gate</li>
+<li>[ ] aoi</li>
+<li>[ ] astar 寻路</li>
+<li>[ ] 配置中心化</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md5"></a>
+目录结构</h1>
+<p >dysonet 目录结构基本与 skynet 目录结构保持一致，其目录结构如下：</p>
+<div class="fragment"><div class="line">dysonet</div>
+<div class="line">    ├─3rd                   -- 第三方库</div>
+<div class="line">    ├─lualib                -- lua 库/模块</div>
+<div class="line">    ├─lualib-src            -- 自己实现的 lua c 库（例如：AOI，astar 等）</div>
+<div class="line">    ├─luaclib               -- 自己实现的 lua c 库编译输出目录（.so文件）</div>
+<div class="line">    ├─service               -- 基础 lua 服务</div>
+<div class="line">    ├─service-src           -- 基础 c 服务源码</div>
+<div class="line">    ├─cservice              -- 基础 c 服务编译输出目录(.so 文件)</div>
+<div class="line">    ├─skynet                -- skynet 框架(以 gitsubmodule 方式集成)</div>
+<div class="line">    └─README.MD</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
+各目录规划</h2>
+<ul>
+<li>3rd<ul>
+<li>[ ] <a href="https://github.com/xiyoo0812/lkcp">lkcp</a></li>
+<li>[ ] <a href="https://github.com/xjdrew/crab">crab 敏感词过滤</a></li>
+<li>[x] <a href="https://github.com/keplerproject/luafilesystem">lfs</a></li>
+<li>[x] <a href="https://github.com/cloudwu/lua-cjson">lua-cjson</a></li>
+<li>[ ] <a href="https://github.com/lvzixun/luaprofile">lua-profile</a></li>
+<li>[x] <a href="https://github.com/starwing/lua-protobuf">lua-protobuf</a></li>
+<li>[ ] <a href="https://github.com/sundream/lua-snapshot">lua-snapshot</a></li>
+<li>[ ] <a href="https://github.com/rocaltair/ltrace">ltrace</a></li>
+<li>[ ] <a href="https://github.com/dpull/lua-webclient">lua-webclient</a></li>
+<li>[ ] [lua-websocket]()</li>
+<li>[ ] <a href="https://github.com/brimworks/lua-zlib">lua-zlib</a></li>
+<li>[ ] <a href="https://github.com/xjdrew/lua-zset">lua-zset</a></li>
+<li>[x] <a href="https://github.com/cloudwu/skynet_package">skynet_package</a></li>
+<li>[x] <a href="https://github.com/lunarmodules/luasocket">luasocket</a> for LuaPanda</li>
+</ul>
+</li>
+<li>lualib<ul>
+<li>[x] lua 标准库的扩展(string、table、math)</li>
+<li>[ ] time 时间处理</li>
+<li>[ ] timer 定时器</li>
+<li>[x] 面向对象实现</li>
+</ul>
+</li>
+<li>service<ul>
+<li>[ ] gate 网关(包括 tcp、kcp、websocket、http)</li>
+<li>[x] xlogger 服务</li>
+<li>[x] slogger 扩展skynet默认的runtimer日志（支持同时写入到文件和stdout） </li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2022年 十一月 4日 星期五 18:51:06 , 为 Dysonet使用 &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>
