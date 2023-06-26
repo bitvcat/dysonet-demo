@@ -104,6 +104,44 @@ Public 成员函数</h2></td></tr>
 <div class="textblock"><p >扩展标准字符串库 </p>
 <p >这里是字符串扩展的详细描述。 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
+<a id="a552450b7fc0e7cec9231d849dc8adb2f" name="a552450b7fc0e7cec9231d849dc8adb2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a552450b7fc0e7cec9231d849dc8adb2f">&#9670;&#160;</a></span>split()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">split </td>
+          <td>(</td>
+          <td class="paramtype">s&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">p&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>字符串分割 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>s 要分割的字符串 </td></tr>
+    <tr><td class="paramname">char</td><td>p 分隔符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>分割后的字符串列表 </dd></dl>
+
+</div>
+</div>
 <a id="a90f308243912bf4412da67a30e9a7977" name="a90f308243912bf4412da67a30e9a7977"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90f308243912bf4412da67a30e9a7977">&#9670;&#160;</a></span>ltrim()</h2>
 
@@ -180,87 +218,6 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a552450b7fc0e7cec9231d849dc8adb2f" name="a552450b7fc0e7cec9231d849dc8adb2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a552450b7fc0e7cec9231d849dc8adb2f">&#9670;&#160;</a></span>split()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">split </td>
-          <td>(</td>
-          <td class="paramtype">s&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">p&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>字符串分割 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">string</td><td>s 要分割的字符串 </td></tr>
-    <tr><td class="paramname">char</td><td>p 分隔符 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>分割后的字符串列表 </dd></dl>
-
-</div>
-</div>
-<a id="a2e5ddb6e7858868f61aa92e1f12256c8" name="a2e5ddb6e7858868f61aa92e1f12256c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e5ddb6e7858868f61aa92e1f12256c8">&#9670;&#160;</a></span>tohex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">tohex </td>
-          <td>(</td>
-          <td class="paramtype">str&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">pretty&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>将字符串用16进制格式化 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">string</td><td>str 要打印的字符串 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bool</td><td>pretty 是否美化打印结果 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>格式化的字符串 </dd></dl>
-<dl class="section note"><dt>注解</dt><dd>无法被打印的字符显示为 ⊠ </dd></dl>
-<dl class="section remark"><dt>备注</dt><dd>示例 <div class="fragment"><div class="line">local str = <span class="stringliteral">&quot;abcdefg&quot;</span></div>
-<div class="line">print(<span class="keywordtype">string</span>.<a class="code hl_function" href="classstring.html#a2e5ddb6e7858868f61aa92e1f12256c8">tohex</a>(str, <span class="keyword">true</span>))</div>
-<div class="ttc" id="aclassstring_html_a2e5ddb6e7858868f61aa92e1f12256c8"><div class="ttname"><a href="classstring.html#a2e5ddb6e7858868f61aa92e1f12256c8">string::tohex</a></div><div class="ttdeci">tohex(str, pretty)</div><div class="ttdoc">将字符串用16进制格式化</div><div class="ttdef"><b>Definition:</b> string.lua:63</div></div>
-</div><!-- fragment --> </dd></dl>
-
-</div>
-</div>
 <a id="ac38e4fc6949e03251b507fbbb9590db1" name="ac38e4fc6949e03251b507fbbb9590db1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac38e4fc6949e03251b507fbbb9590db1">&#9670;&#160;</a></span>trim()</h2>
 
@@ -333,7 +290,64 @@ Public 成员函数</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>两边都裁剪后的字符串 </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>两边都裁剪后的字符串</dd></dl>
+<div class="fragment"><div class="line">local str = <span class="stringliteral">&quot;abcdefg&quot;</span></div>
+<div class="line">print(<span class="keywordtype">string</span>.<a class="code hl_function" href="classstring.html#a2e5ddb6e7858868f61aa92e1f12256c8">tohex</a>(str, <span class="keyword">true</span>))</div>
+<div class="ttc" id="aclassstring_html_a2e5ddb6e7858868f61aa92e1f12256c8"><div class="ttname"><a href="classstring.html#a2e5ddb6e7858868f61aa92e1f12256c8">string::tohex</a></div><div class="ttdeci">tohex(str, pretty)</div><div class="ttdoc">将字符串用16进制格式化</div><div class="ttdef"><b>Definition:</b> string.lua:110</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md0"></a>
+标题1</h3>
+<ul>
+<li>xxxx</li>
+<li>yyyy</li>
+</ul>
+<div class="fragment"><div class="line">local a = 11</div>
+<div class="line">print(a)</div>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md1"></a>
+标题2</h3>
+<p >这是一行测试文本1 <br  />
+ 这是一行测试文本2 </p>
+
+</div>
+</div>
+<a id="a2e5ddb6e7858868f61aa92e1f12256c8" name="a2e5ddb6e7858868f61aa92e1f12256c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e5ddb6e7858868f61aa92e1f12256c8">&#9670;&#160;</a></span>tohex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tohex </td>
+          <td>(</td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">pretty&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将字符串用16进制格式化 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">string</td><td>str 要打印的字符串 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bool</td><td>pretty 是否美化打印结果 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>格式化的字符串 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd>无法被打印的字符显示为 ⊠ </dd></dl>
+<dl class="section remark"><dt>备注</dt><dd>示例 示例1 示例2 <div class="fragment"><div class="line">local str = <span class="stringliteral">&quot;abcdefg&quot;</span></div>
+<div class="line">print(<span class="keywordtype">string</span>.<a class="code hl_function" href="classstring.html#a2e5ddb6e7858868f61aa92e1f12256c8">tohex</a>(str, <span class="keyword">true</span>))</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -343,7 +357,7 @@ Public 成员函数</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+生成于 2022年 十一月 4日 星期五 18:51:06 , 为 Dysonet使用 &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
 </small></address>
 </body>
 </html>

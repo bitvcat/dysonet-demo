@@ -100,70 +100,6 @@ Public 成员函数</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >日志管理模块 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a0c0b5d01c455048a5a87e4a0e539fcdc" name="a0c0b5d01c455048a5a87e4a0e539fcdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c0b5d01c455048a5a87e4a0e539fcdc">&#9670;&#160;</a></span>color()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">color </td>
-          <td>(</td>
-          <td class="paramtype">colorname&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>带颜色的运行时日志打印，支持打印 table </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">string</td><td>colorname 指定颜色名称 </td></tr>
-    <tr><td class="paramname">vars</td><td>... 日志文件名 </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a4eca020e3f9fa5070d657f0d5485435c" name="a4eca020e3f9fa5070d657f0d5485435c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4eca020e3f9fa5070d657f0d5485435c">&#9670;&#160;</a></span>getAddr()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">getAddr </td>
-          <td>(</td>
-          <td class="paramtype">filename&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>根据日志文件名获取对应的服务地址 </p>
-<p >使用 elfhash 算法获取 filename 的哈希值。 </p><dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">string</td><td>filename 日志文件名 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>日志服务地址 </dd></dl>
-
-</div>
-</div>
 <a id="a72d2fedae339f8bee6fb3d194df3b11d" name="a72d2fedae339f8bee6fb3d194df3b11d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a72d2fedae339f8bee6fb3d194df3b11d">&#9670;&#160;</a></span>init()</h2>
 
@@ -198,6 +134,33 @@ Public 成员函数</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a4eca020e3f9fa5070d657f0d5485435c" name="a4eca020e3f9fa5070d657f0d5485435c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eca020e3f9fa5070d657f0d5485435c">&#9670;&#160;</a></span>getAddr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getAddr </td>
+          <td>(</td>
+          <td class="paramtype">filename&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据日志文件名获取对应的服务地址 </p>
+<p >使用 elfhash 算法获取 filename 的哈希值。 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>filename 日志文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>日志服务地址 </dd></dl>
 
 </div>
 </div>
@@ -277,13 +240,50 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
+<a id="a0c0b5d01c455048a5a87e4a0e539fcdc" name="a0c0b5d01c455048a5a87e4a0e539fcdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c0b5d01c455048a5a87e4a0e539fcdc">&#9670;&#160;</a></span>color()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">color </td>
+          <td>(</td>
+          <td class="paramtype">colorname&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>带颜色的运行时日志打印，支持打印 table </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>colorname 指定颜色名称 </td></tr>
+    <tr><td class="paramname">vars</td><td>... 日志文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>/mnt/d/Codes/dysonet-demo/dysonet/lualib/<a class="el" href="logger_8lua.html">logger.lua</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+生成于 2022年 十一月 4日 星期五 18:51:06 , 为 Dysonet使用 &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
 </small></address>
 </body>
 </html>

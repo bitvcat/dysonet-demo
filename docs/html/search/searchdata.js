@@ -1,11 +1,11 @@
 var indexSectionsWithContent =
 {
   0: "_abcdefghiloprstw目",
-  1: "abcdfhils",
+  1: "abcdfhls",
   2: "acls",
   3: "_bcdfgiloprst",
   4: "cdefitw",
-  5: "目"
+  5: "dt目"
 };
 
 var indexSectionNames =
