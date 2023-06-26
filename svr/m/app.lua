@@ -12,7 +12,7 @@ function App:onInit()
 
     -- init
     Client:Init(require("svr.m.api.client.init"))
-    Cluster:Init(require("svr.m.api.server.init"))
+    Server:Init(require("svr.m.api.server.init"))
     Console:Init(require("svr.m.api.gm.init"))
     Http:Init(require("svr.m.api.http.init"))
 end

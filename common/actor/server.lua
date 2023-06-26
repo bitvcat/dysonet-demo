@@ -1,14 +1,16 @@
 --- cluster actor
+--  skynet.send(addr, "lua", "Server, "api", "ping", ...)
+--  skynet.send(addr, "lua", "Server, "exec", ...)
 --[[!
     @file
     @brief Cluster actor 类源文件。
 ]]
 
 
---! @class Cluster
---! @brief Cluster Actor 类
-local Cluster = Single("Cluster")
-function Cluster:__init(apiobj)
+--! @class Server
+--! @brief Server Actor 类
+local Server = Single("Server")
+function Server:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj
     self.apiobj:Init()
@@ -16,7 +18,7 @@ function Cluster:__init(apiobj)
     self.nodes = {}
 end
 
-function Cluster:open()
+function Server:open()
     local cluster = dysonet.cluster
     -- local addrs = {
     --     db = "127.0.0.1:2528",
@@ -28,23 +30,23 @@ function Cluster:open()
 end
 
 --- 消息派发处理
-function Cluster:dispatch(session, source, cmd, ...)
+function Server:dispatch(session, source, cmd, ...)
     local func = self[cmd]
     assert(func, cmd)
     return func(self, ...)
 end
 
-function Cluster:api(subcmd, ...)
+function Server:api(subcmd, ...)
     local handler = self.apiobj[subcmd]
     assert(handler, subcmd)
     return handler(self.apiobj, ...)
 end
 
-function Cluster:exec()
+function Server:exec()
 
 end
 
 --- 消息发送处理
-function Cluster:send(node, addr)
+function Server:send(node, addr)
     cluster.call("db2", "@sdb", "GET", "b")
 end

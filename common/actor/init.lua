@@ -1,5 +1,4 @@
 require("common.actor.client")
-require("common.actor.cluster")
-require("common.actor.internal")
+require("common.actor.server")
 require("common.actor.console")
 require("common.actor.http")
