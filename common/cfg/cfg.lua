@@ -3,7 +3,7 @@ local skynet = require "skynet"
 local sharetable = require "skynet.sharetable"
 local lfs = require "lfs"
 
-local Cfg = Class("Cfg")
+local Cfg = Single("Cfg")
 function Cfg:__init(path, master)
     self._path = path -- 配置路径
     self._master = master

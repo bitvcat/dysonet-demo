@@ -3,7 +3,7 @@
 --  skynet.send(addr, "lua", "Internal, "api", "ping", ...)
 --  skynet.send(addr, "lua", "Internal, "exec", ...)
 
-local Internal = Class("Internal")
+local Internal = Single("Internal")
 function Internal:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj

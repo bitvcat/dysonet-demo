@@ -11,7 +11,7 @@
 
 --! @class Client
 --! @brief Client Actor 类
-local Client = Class("Client")
+local Client = Single("Client")
 
 --! @brief Client constructor
 function Client:__init(apiobj)

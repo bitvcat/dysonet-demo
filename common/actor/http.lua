@@ -1,6 +1,6 @@
 --- http actor
 
-local Http = Class("Http")
+local Http = Single("Http")
 function Http:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj

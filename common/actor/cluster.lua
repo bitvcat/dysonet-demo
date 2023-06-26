@@ -7,7 +7,7 @@
 
 --! @class Cluster
 --! @brief Cluster Actor 类
-local Cluster = Class("Cluster")
+local Cluster = Single("Cluster")
 function Cluster:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj

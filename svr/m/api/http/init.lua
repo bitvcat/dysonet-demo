@@ -1,4 +1,4 @@
-local ApiHttp = Class("ApiHttp")
+local ApiHttp = Single("ApiHttp")
 function ApiHttp:__init()
     self:register("/role", require("svr.m.api.http.role"))
 end

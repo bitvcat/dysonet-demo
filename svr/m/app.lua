@@ -50,34 +50,38 @@ function App:test()
     --logger.print(ok, err)
     logger.print(_G.utf8)
     logger.print(string.trim1([["abchelllo cat"]], '"abc'))
+
+    local dog = Dog:New()
+    dog:test()
 end
 
 --! @class Base
 --! @brief Base 类
 local Base = Class("Base")
-function Base:__init()
+function Base:__ctor()
 end
 
 --! @brief base 测试函数
 --! @param string a this is a value
 --! @param string b this is b value
 function Base:test(a, b)
+    logger.print("--------->>> Base:test")
 end
 
 --! @class Foo
 --! @brief Foo 类
 local Foo = Class("Foo", "Base")
-function Foo:__init()
+function Foo:__ctor()
 end
 
 --! @class Bar
 --! @brief Bar 类
 local Bar = Class("Bar", "Base")
-function Bar:__init()
+function Bar:__ctor()
 end
 
 --! @class Dog
 --! @brief Dog 类
-local Dog = class("Dog", Foo, "Bar")
-function Dog:__init()
+local Dog = Class("Dog", "Foo")
+function Dog:__ctor()
 end

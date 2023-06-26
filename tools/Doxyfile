@@ -61,7 +61,7 @@ INLINE_GROUPED_CLASSES = NO
 INLINE_SIMPLE_STRUCTS  = NO
 TYPEDEF_HIDES_STRUCT   = NO
 LOOKUP_CACHE_SIZE      = 0
-NUM_PROC_THREADS       = 1
+NUM_PROC_THREADS       = 8
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
@@ -76,7 +76,7 @@ EXTRACT_ANON_NSPACES   = NO
 RESOLVE_UNNAMED_PARAMS = YES
 # 隐藏未文档化成员
 HIDE_UNDOC_MEMBERS     = YES
-HIDE_UNDOC_CLASSES     = NO
+HIDE_UNDOC_CLASSES     = YES
 HIDE_FRIEND_COMPOUNDS  = NO
 HIDE_IN_BODY_DOCS      = NO
 INTERNAL_DOCS          = NO
@@ -88,10 +88,10 @@ SHOW_INCLUDE_FILES     = YES
 SHOW_GROUPED_MEMB_INC  = NO
 FORCE_LOCAL_INCLUDES   = NO
 INLINE_INFO            = YES
-SORT_MEMBER_DOCS       = YES
+SORT_MEMBER_DOCS       = NO
 SORT_BRIEF_DOCS        = NO
 SORT_MEMBERS_CTORS_1ST = NO
-SORT_GROUP_NAMES       = NO
+SORT_GROUP_NAMES       = YES
 SORT_BY_SCOPE_NAME     = NO
 STRICT_PROTO_MATCHING  = NO
 GENERATE_TODOLIST      = YES
@@ -125,10 +125,12 @@ WARN_LOGFILE           =
 INPUT                  = ../dysonet \
                          ../common \
                          ../svr \
+                         ../docs/md \
                          ../readme.md
 INPUT_ENCODING         = UTF-8
 INPUT_FILE_ENCODING    =
-FILE_PATTERNS          = *.lua
+FILE_PATTERNS          = *.lua \
+                         *.md
 RECURSIVE              = YES
 EXCLUDE                =
 EXCLUDE_SYMLINKS       = NO
@@ -142,7 +144,7 @@ EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           =
 EXAMPLE_PATTERNS       = *
 EXAMPLE_RECURSIVE      = NO
-IMAGE_PATH             =
+IMAGE_PATH             = ../docs/img
 INPUT_FILTER           =
 FILTER_PATTERNS        = "*.lua=lua ./lua2dox.lua"
 FILTER_SOURCE_FILES    = NO
@@ -181,7 +183,7 @@ HTML_COLORSTYLE        = AUTO_LIGHT
 HTML_COLORSTYLE_HUE    = 220
 HTML_COLORSTYLE_SAT    = 100
 HTML_COLORSTYLE_GAMMA  = 80
-HTML_TIMESTAMP         = NO
+HTML_TIMESTAMP         = YES
 HTML_DYNAMIC_MENUS     = YES
 HTML_DYNAMIC_SECTIONS  = NO
 HTML_INDEX_NUM_ENTRIES = 100

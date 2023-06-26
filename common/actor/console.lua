@@ -3,7 +3,7 @@
 --  skynet.send(addr, "lua", "Console", "gm", "addItem", ...)
 --  skynet.send(addr, "lua", "Console", "hotfix", "addItem", ...)
 
-local Console = Class("Console")
+local Console = Single("Console")
 function Console:__init(apiobj)
     assert(type(apiobj) == "table")
     self.apiobj = apiobj

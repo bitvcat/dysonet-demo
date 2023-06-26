@@ -197,7 +197,7 @@ function TCore_Clock.getTimeStamp(this,T0)
 	else
 		t0 = this.t0
 	end
-	return os.date('%c %Z',t0)
+	return os.date('%c %z',t0)
 end
 
 
@@ -543,11 +543,11 @@ function TLua2DoX_filter.readfile(this,AppStamp,Filename)
 						outStream:write('/*' .. comment .. '*/  ')
 						fn_magic = checkComment4fn(fn_magic,comment)
 					else -- discard
-						--outStream:write('/* zz:' .. comment .. '*/  ')
+						outStream:write('/* zz:' .. comment .. '*/  ')
 						fn_magic = nil
 					end
 				else
-					--outStream:writeln('// zz:"' .. line .. '"')
+					outStream:writeln('// zz:"' .. line .. '"')
 					fn_magic = nil
 				end
 			elseif string.find(line,'^function') or string.find(line,'^local%s+function') then
@@ -650,7 +650,7 @@ function TLua2DoX_filter.readfile(this,AppStamp,Filename)
 					if conv_str then
 						outStream:writeln(conv_str)
 					else
-						--outStream:writeln('// zz: ' .. line)
+						outStream:writeln('// zz: ' .. line)
 					end
 				else
 					outStream:writeln() -- keep this line blank

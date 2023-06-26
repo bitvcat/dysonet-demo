@@ -1,6 +1,20 @@
 --[[!
     @file
-    @brief 节点主服务管理模块（单例类）。
+    @brief 节点主服务管理模块（单例类）
+    @author bitcat
+    @date 2022-10-21 18:30
+    @details 这里是测试 markdown 语法的注释
+
+    ###  标题1
+    - xxxx
+    - yyyy
+
+    ```lua
+    local a = 11
+    print(a)
+    ```
+    ### 标题2
+    惺惺惜惺惺急啊卡的就爱看贷记卡
 ]]
 
 require("dysonet.init")
@@ -11,7 +25,16 @@ require("common.cfg.cfg")
 --! @class App
 --! @brief App 类
 --! @details 节点的App类，这是一个单例类。
-local App = Class("App")
+--- ###  标题1
+--- - xxxx
+--- - yyyy
+--- ```lua
+--- local a = 11
+--- print(a)
+--- ```
+--- ### 标题2
+--- 这个是app类
+local App = Single("App")
 
 --! @brief App sington initialization
 function App:__init(serviceName, ...)
